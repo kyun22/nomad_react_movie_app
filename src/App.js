@@ -6,7 +6,7 @@ class App extends React.Component{
   
   // state는 object 이다
   // state의 값을 변경할 땐 항상 setState를 사용한다.
-  // (setState를 사용하지 않으면 render를 하지 않음)
+  // setState를 사용할 때 마다 새로운 state와 함께 render()를 호출한다.
   state = {  
     count: 0
   }
@@ -17,10 +17,19 @@ class App extends React.Component{
   }
 
   minus = () =>{
-    this.setState({count: this.state.count -1})
+    this.setState(current => ({count: current.count - 1}))
   }
   
+componentDidMount(){
+  console.log("Component rendered");
+}
+
+componentDidUpdate(){
+  console.log("I just updated")
+}
+
   render(){    // React는  Class component의 render 메소드를 자동으로 실행
+    console.log("I'm rendering");
     return (
     <div>
       <h1>The number is : {this.state.count}</h1>
